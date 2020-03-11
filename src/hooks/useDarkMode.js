@@ -3,18 +3,19 @@ import {useEffect} from "react"
 
 export const useDarkMode = darkModeBoolean => {
 
+
     const [storedValue, setValue] = useLocalStorage('darkModeEnabled', darkModeBoolean);
     const body = document.querySelector("body");
 
     useEffect(() => {
         //check use storage value
         if (storedValue === true) {
-            body.classList.add("dark-mode");
+            body.classList.toggle("dark-mode");
         } else {
             body.classList.remove("dark-mode");
         }
         
-    }, [darkModeBoolean]);
+    }, [storedValue]);
     
     return [storedValue, setValue];
 
